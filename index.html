@@ -18,17 +18,17 @@
             <div class="logo">
                 <a href="#">Coding Monkey</a>
             </div>
-            <div class="nav-toggler">
-                <span>
-
-                </span>
+            <div class="nav-toggler" onclick="toggleSidebar(event)">
+                <span></span>
+            </div>
+            <div class="close-btn" onclick="toggleSidebar(event)">
             </div>
             <ul class="nav">
-                <li><a href="#home" class="active"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href="#about"><i class="fa fa-user"></i>About me</a></li>
-                <li><a href="#service"><i class="fa fa-list"></i>Services</a></li>
-                <li><a href="#portfolio"><i class="fa fa-briefcase"></i>Portfolio</a></li>
-                <li><a href="#contactme"><i class="fa fa-comments"></i>Contact me</a></li>
+                <li><a href="#home" class="active span" data-section="home"><i class="fa fa-home"></i>Home</a></li>
+                <li><a href="#about" data-section="about"><i class="fa fa-user"></i>About me</a></li>
+                <li><a href="#service" data-section="service"><i class="fa fa-list"></i>Services</a></li>
+                <li><a href="#portfolio" data-section="portfolio"><i class="fa fa-briefcase"></i>Portfolio</a></li>
+                <li><a href="#contactme" data-section="contactme"><i class="fa fa-comments"></i>Contact me</a></li>
             </ul>
         </div>
         <!--- Sidebar end --->
