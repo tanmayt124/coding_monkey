@@ -249,7 +249,7 @@ h3.my-profession {
 }
 
 .typing {
-    font-size: 30px;
+    font-size: 28px;
     color: var(--skin-color);
 }
 
@@ -558,6 +558,10 @@ h3.hello span {
     text-align: center;
     font-size: 15px;
     margin-bottom: 60px;
+}
+
+.info {
+    margin-top: 20px;
 }
 
 .contact .contact-info-item .icon {
