@@ -53,3 +53,24 @@ document.addEventListener('scroll', function() {
         }
     });
 });
+
+window.onload = function() {
+    const today = new Date();
+    const dob = new Date('11/12/2001'); // Use any date you want here
+    const differencedob = today - dob;
+    const differenceYearsindob = differencedob / (1000 * 60 * 60 * 24 * 365.25); // Average year length
+    const roundedYearsdob = Math.round(differenceYearsindob);
+  
+    const exp = new Date('07/07/2023');
+    const differenceexp = today - exp;
+    const differenceYearsinexperience = differenceexp / (1000 * 60 * 60 * 24 * 365.25)
+    const roundedYearsexp = Math.round(differenceYearsinexperience);
+
+    // Display the result on the page
+    const resultElementdob = document.getElementById('ageDiff');
+    resultElementdob.textContent = `${roundedYearsdob} Years` ;
+
+    const resultElementexp = document.getElementById('exp');
+    resultElementexp.textContent = `${roundedYearsexp} Year`;
+};
+  
