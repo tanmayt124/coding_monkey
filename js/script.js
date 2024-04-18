@@ -54,6 +54,23 @@ document.addEventListener('scroll', function() {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Get references to the checkbox and text input elements
+    var checkbox = document.getElementById('anonymousCheck');
+    var textInput = document.getElementById('nameBox');
+
+    // Add event listener for checkbox change event
+    checkbox.addEventListener('change', function() {
+        // If checkbox is checked, display text input value
+        if (checkbox.checked) {
+            textInput.value = "Anonymous";
+        }
+        else{
+            textInput.value = "";
+        }
+    });
+});
+
 window.onload = function() {
     const today = new Date();
     const dob = new Date('11/12/2001'); // Use any date you want here
