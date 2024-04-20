@@ -91,3 +91,39 @@ window.onload = function() {
     resultElementexp.textContent = `${roundedYearsexp} Year`;
 };
   
+const words = ['Web Developer', 'Software Engineer', 'Backend Developer', 'Flutter Developer'];
+const typingAnimation = document.getElementById('typing');
+let currentWordIndex = 0;
+let currentLetterIndex = 0;
+let isErasing = false;
+
+function typeWords() {
+  let word = words[currentWordIndex % words.length];
+
+  if (!isErasing) {
+    // Typing animation
+    typingAnimation.textContent = word.substring(0, currentLetterIndex);
+    currentLetterIndex++;
+    if (currentLetterIndex > word.length) {
+      isErasing = true;
+      setTimeout(() => {
+        typeWords();
+      }, 1000); // Pause before erasing
+    } else {
+      setTimeout(typeWords, 125); // Type next letter
+    }
+  } else {
+    // Erasing animation
+    typingAnimation.textContent = word.substring(0, currentLetterIndex);
+    currentLetterIndex--;
+    if (currentLetterIndex < 0) {
+      isErasing = false;
+      currentWordIndex++;
+      setTimeout(typeWords, 1000); // Pause before typing next word
+    } else {
+      setTimeout(typeWords, 50); // Erase next letter
+    }
+  }
+}
+
+typeWords(); // Start typing animation

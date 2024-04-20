@@ -25,6 +25,44 @@ body {
     box-sizing: border-box;
 }
 
+#cursor {
+    display: inline-block;
+    width: 2px;
+    height: 24px; /* Adjust height as needed */
+    background-color: var(--skin-color);
+    animation: blink-caret 0.5s step-end infinite; /* Blinking cursor animation */
+}
+
+#typing {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    animation-timing-function: steps(30, end);
+    animation-fill-mode: forwards;
+    animation: typing 3s steps(20, end), blink-caret 0.5s step-end infinite;
+}
+
+/* Define typing animation */
+@keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+  /* Define blinking cursor animation */
+  @keyframes blink-caret {
+    from, to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: #000;
+    }
+  }
+
+
 ul {
     list-style: none;
 }
