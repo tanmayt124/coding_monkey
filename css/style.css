@@ -708,6 +708,14 @@ h3.hello span {
     margin-top: 2%;
 }
 
+.feedbackText {
+    width: 260px;
+    height: 60px;
+    padding: 5px;
+    font-family: 'Philosopher', sans-serif;
+    word-wrap: normal;
+}
+
 /* Responsive styles */
 @media screen and (max-width: 768px) {
     .content {
