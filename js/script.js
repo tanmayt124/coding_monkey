@@ -55,22 +55,56 @@ document.addEventListener('scroll', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Get references to the checkbox and text input elements
-    var checkbox = document.getElementById('anonymousCheck');
-    var textInput = document.getElementById('nameBox');
+  // Get references to the checkbox and text input elements
+  var checkbox = document.getElementById('anonymousCheck');
+  var textInput = document.getElementById('nameBox');
+  const stars = document.querySelectorAll('#rating .star');
+  const ratingInput = document.getElementById('ratingValue'); // Hidden input for rating
+  let selectedValue = 0; // To keep track of the selected star value
+  // Add event listener for checkbox change event
+  checkbox.addEventListener('change', function() {
+      // If checkbox is checked, display text input value
+      if (checkbox.checked) {
+          textInput.value = "Anonymous";
+      }
+      else{
+          textInput.value = "";
+      }
+  });
+  stars.forEach(star => {
+    star.addEventListener('mouseover', () => {
+        const hoverValue = parseInt(star.getAttribute('data-value'), 10);
+        console.log(`Hovering over star with value: ${hoverValue}`);
+        updateStars(hoverValue, true); // Pass true for hover effect
+    });
 
-    // Add event listener for checkbox change event
-    checkbox.addEventListener('change', function() {
-        // If checkbox is checked, display text input value
-        if (checkbox.checked) {
-            textInput.value = "Anonymous";
-        }
-        else{
-            textInput.value = "";
+    star.addEventListener('mouseout', () => {
+        console.log(`Mouse out from star, keeping selected value: ${selectedValue}`);
+        updateStars(selectedValue, false); // Pass false for default effect
+    });
+
+    star.addEventListener('click', () => {
+        selectedValue = parseInt(star.getAttribute('data-value'), 10);
+        ratingInput.value = selectedValue; // Update hidden input with the selected value
+        console.log(`Clicked on star with value: ${selectedValue}`);
+        updateStars(selectedValue, false); // Update stars based on the selected value
+    });
+  });
+  function updateStars(value, isHover) {
+    stars.forEach(star => {
+        const starValue = parseInt(star.getAttribute('data-value'), 10);
+        if (starValue <= value) {
+            star.classList.add(isHover ? 'hover' : 'selected');
+            star.classList.remove(isHover ? 'selected' : 'hover');
+        } else {
+            star.classList.remove('hover', 'selected');
         }
     });
-});
+  }
 
+  // Initialize stars based on the selected value
+  updateStars(selectedValue, false); // false indicates that we are initializing the stars without hover effect
+});
 window.onload = function() {
     const today = new Date();
     const dob = new Date('11/12/2001'); // Use any date you want here
@@ -127,3 +161,47 @@ function typeWords() {
 }
 
 typeWords(); // Start typing animation
+
+const form = document.getElementById('feedbackForm');
+const result = document.getElementById('result');
+var checkbox = document.getElementById('anonymousCheck');
+// Remove the checkbox field from the form data
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  checkbox.disabled = true; // Disables the checkbox so its value is not submitted
+  const formData = new FormData(form);
+  const object = Object.fromEntries(formData);
+  const json = JSON.stringify(object);
+  checkbox.disabled = true; // Disables the checkbox so its value is not submitted
+
+  result.innerHTML = "Please wait..."
+
+    fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+        .then(async (response) => {
+            let json = await response.json();
+            if (response.status == 200) {
+                result.innerHTML = json.message;
+            } else {
+                console.log(response);
+                result.innerHTML = json.message;
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            result.innerHTML = "Something went wrong!";
+        })
+        .then(function() {
+            form.reset();
+            setTimeout(() => {
+                checkbox.disabled = false; // Re-enable the checkbox after form submission
+                result.style.display = "none";
+            }, 3000);
+        });
+});
