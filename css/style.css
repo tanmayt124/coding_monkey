@@ -669,32 +669,26 @@ h3.hello span {
     width: 30%;
 }
 
-.contact .feedback-form .rating {
-    unicode-bidi: bidi-override;
-    direction: rtl;
+.row.info.gap {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adjust as needed */
 }
 
-.contact .feedback-form .rating > label {
-    display: inline-block;
-    padding: 5px;
-    font-size: 30px;
-    color: #ccc;
+.rating {
+    display: inline-flex;
+}
+
+.star {
+    font-size: 30px; /* Adjust size as needed */
+    color: #ccc; /* Default star color */
     cursor: pointer;
+    padding: 0 5px; /* Space around each star */
 }
 
-.contact .feedback-form .rating > label:hover,
-.contact .feedback-form .rating > label:hover ~ label,
-.contact .feedback-form .rating > input:checked ~ label {
-    color: #ffcc00;
-}
-
-.contact .feedback-form .rating > input:checked ~ label:hover,
-.contact .feedback-form .rating > input:checked ~ label:hover ~ label {
-    color: #ffcc00;
-}
-
-.contact .feedback-form .rating > input {
-    display: none;
+.star.hover,
+.star.selected {
+    color: #ffcc00; /* Color for hovered and selected stars */
 }
 
 .contact .feedback-form textarea {
