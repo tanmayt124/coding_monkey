@@ -19,6 +19,7 @@ body {
     outline: none;
     text-decoration: none;
     box-sizing: border-box;
+    font-family: 'Philosopher', sans-serif;
 }
 
 ::before,::after {
@@ -662,14 +663,14 @@ h3.hello span {
     font-family: 'Philosopher', sans-serif;
 }
 
-.contact .feedback-form .feedbackNameBox{
-    width: 30%;
-}
-
 .row.info.gap {
     display: flex;
     align-items: center;
     gap: 10px; /* Adjust as needed */
+}
+
+#nameBox {
+    width: 30%;
 }
 
 .rating {
