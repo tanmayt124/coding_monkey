@@ -125,7 +125,7 @@ window.onload = function() {
     resultElementexp.textContent = `${roundedYearsexp} Year`;
 };
   
-const words = ['Web Developer', 'Software Engineer', 'Backend Developer', 'Flutter Developer'];
+const words = ['Software Engineer', 'Full Stack Developer', 'Flutter Developer', 'Backend Developer'];
 const typingAnimation = document.getElementById('typing');
 let currentWordIndex = 0;
 let currentLetterIndex = 0;
