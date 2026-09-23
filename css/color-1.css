@@ -1,3 +1,24 @@
 :root {
-    --skin-color: #ffac79;
+    /* Surfaces */
+    --bg: #05070d;
+    --bg-elev-1: #0b0f1a;
+    --bg-elev-2: #121729;
+    --bg-elev-3: #1a2038;
+    --border-color: #212942;
+    --border-hover: #323c5e;
+
+    /* Text */
+    --text-primary: #eef1fb;
+    --text-secondary: #9aa4c4;
+    --text-muted: #656f90;
+
+    /* Accents */
+    --accent: #7c8cff;
+    --accent-2: #34e2c4;
+    --accent-soft: rgba(124, 140, 255, 0.12);
+    --accent-2-soft: rgba(52, 226, 196, 0.12);
+    --gradient: linear-gradient(135deg, #7c8cff 0%, #34e2c4 100%);
+
+    /* Back-compat alias used by any legacy rule */
+    --skin-color: #7c8cff;
 }
