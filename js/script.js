@@ -104,6 +104,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Initialize stars based on the selected value
   updateStars(selectedValue, false); // false indicates that we are initializing the stars without hover effect
+
+  // Footer year
+  var yearEl = document.getElementById('year');
+  if (yearEl) {
+      yearEl.textContent = new Date().getFullYear();
+  }
+
+  // Reveal-on-scroll for section content
+  var revealTargets = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+      var revealObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+              if (entry.isIntersecting) {
+                  entry.target.classList.add('in-view');
+                  revealObserver.unobserve(entry.target);
+              }
+          });
+      }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+      revealTargets.forEach(function(target) {
+          revealObserver.observe(target);
+      });
+  } else {
+      revealTargets.forEach(function(target) {
+          target.classList.add('in-view');
+      });
+  }
 });
 window.onload = function() {
     const today = new Date();
@@ -124,7 +151,7 @@ window.onload = function() {
     const resultElementexp = document.getElementById('exp');
     resultElementexp.textContent = `${roundedYearsexp} Year`;
 };
-  
+
 const words = ['Software Engineer', 'Full Stack Developer', 'Flutter Developer', 'Backend Developer'];
 const typingAnimation = document.getElementById('typing');
 let currentWordIndex = 0;
