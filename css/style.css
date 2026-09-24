@@ -834,6 +834,7 @@ h1, h2, h3, h4, h5 {
 .dot-a { background: var(--accent); }
 .dot-b { background: var(--accent-2); }
 .dot-c { background: #ffb454; }
+.dot-d { background: #a78bfa; }
 
 .sub-project-head h4 {
     font-size: 16px;
