@@ -232,3 +232,33 @@ form.addEventListener('submit', function(e) {
             }, 3000);
         });
 });
+// Force an actual file download rather than relying on the browser's
+// native handling of the HTML `download` attribute. Several mobile
+// browsers (notably Android Chrome) ignore that attribute for PDFs
+// specifically and just open them in the built-in viewer instead of
+// saving them. Fetching as a blob and triggering the save via an
+// object URL bypasses that, since the browser has no viewable-content
+// heuristic to apply to a blob: URL.
+function forceDownload(event, url, filename) {
+  event.preventDefault();
+  fetch(url)
+    .then(function(response) {
+      if (!response.ok) { throw new Error('Network response was not ok'); }
+      return response.blob();
+    })
+    .then(function(blob) {
+      var objectUrl = URL.createObjectURL(blob);
+      var link = document.createElement('a');
+      link.href = objectUrl;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setTimeout(function() { URL.revokeObjectURL(objectUrl); }, 1000);
+    })
+    .catch(function(err) {
+      console.error('forceDownload failed, falling back to direct navigation:', err);
+      // Fallback: behave like a normal link if fetch/blob fails for any reason
+      window.location.href = url;
+    });
+}
